@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="toDo card">
+        <h1 class="title">To Do</h1>
+        <div class="card_field">
+          <div class="card_fieldAdd">+ add another card</div>
+        </div>
+      </div>
+      <div class="inProgress card">
+        <h1 class="title">In progress</h1>
+        <div class="card_field">
+          <div class="card_fieldAdd">+ add another card</div>
+        </div>
+      </div>
+      <div class="done card">
+        <h1 class="title">Done</h1>
+        <div class="card_field">
+          <div class="card_fieldAdd">+ add another card</div>
+        </div>
+      </div>
+      <div class="deleted card">
+        <h1 class="title">Trash</h1>
+        <div class="card_field">
+          <div class="card_fieldAdd">+ add another card</div>
+        </div>
+      </div>
+    </div>
+    <div class="modalWrapper">
+    <div class="container modal">
+      <div class="header"><h1>Поле ввода</h1></div>
+
+      <div class="content">
+        <form id="form">
+          <input
+            type="text"
+            class="field"
+            id="task"
+            placeholder="A task"
+          />
+          <br />
+
+          <input
+            type="text"
+            class="field"
+            id="description"
+            placeholder="Description"
+          />
+          <button class="subBtn" type="submit" >Submit</button>
+        </form>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
