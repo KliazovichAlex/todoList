@@ -27,29 +27,25 @@ form.addEventListener("submit", function (event) {
 });
 
 function write() {
-  const newDiv = document.createElement("div");
-  newDiv.classList.add("bk");
-  newDiv.innerHTML = "";
+  cardField.innerHTML = "";
   data.forEach((element) => {
-    newDiv.innerHTML = `
+    cardField.innerHTML += `<div class="bk">
     <h1 id="one">${element.title}</h1>
     <p id="two">${element.description}</p> 
     <div id="red"></div>
     <div id="del"><div>
+    </div>
     `;
   });
-  const first = cardField.firstChild;
-  cardField.insertBefore(newDiv, first);
 }
+//   const first = cardField.firstChild;
+//   cardField.insertBefore(newDiv, first);
+// }
 
 function clearBoard(val, brd) {
-  while (cardField.firstChild) {
-    cardField.removeChild(cardField.lastChild);
-  }
-  data.forEach((elemetn) => {
+  data.forEach((elemetn, index) => {
     if (elemetn.title === val) {
-      let idx = data.indexOf(val);
-      data.splice(idx, 1);
+      data.splice(index, 1);
       brd.innerHTML = "";
       write();
     }
@@ -57,32 +53,28 @@ function clearBoard(val, brd) {
 }
 
 cardField.addEventListener("click", (event) => {
-  const red = event.target.querySelector("#red");
-  const del = event.target.querySelector("#del");
   const board = event.target.closest(".bk");
-  const titleText = board.querySelector("#one");
-  const titleVal = titleText.innerHTML;
-  const reductText = board.querySelector("#two");
-  const descVal = reductText.innerHTML;
+  const titleText = board.querySelector("#one").textContent;
+  const reductText = board.querySelector("#two").textContent;
+  console.log(reductText);
   if (event.target.closest("#del")) {
-    clearBoard(titleVal, board);
+    clearBoard(titleText, cardField);
   } else if (event.target.closest("#red")) {
-    board.innerHTML = "";
-    reductBoard(titleVal, descVal, board);
+    cardField.innerHTML = "";
+    reductBoard(titleText, reductText);
   }
 });
 
-function reductBoard(t, d, brd) {
+function reductBoard(t, d) {
   modalWrapper.classList.toggle("closeModal");
   task.value = t;
   description.value = d;
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    data.forEach((element) => {
+    data.forEach((element, index) => {
       if (element.description == d) {
-        let indx = data.indexOf(element);
-        data.splice(indx, 1);
-        brd.innerHTML = "";
+        data.splice(index, 1);
+        write();
       }
     });
   });
